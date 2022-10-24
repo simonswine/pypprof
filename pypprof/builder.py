@@ -18,6 +18,7 @@ import collections
 import gzip
 import io
 import six
+import time
 
 from pypprof import profile_pb2
 
@@ -57,6 +58,7 @@ class Builder(object):
     self._profile.period_type.unit = self._string_id(period_unit)
     self._profile.period = period
     self._profile.duration_nanos = duration_ns
+    self._profile.time_nanos = time.time_ns()
     type1 = self._profile.sample_type.add()
     type1.type = self._string_id('sample')
     type1.unit = self._string_id('count')
